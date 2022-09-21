@@ -1,1 +1,3 @@
+scheduled:
+  printCron: "0 35 14 * * ?"
 
