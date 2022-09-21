@@ -1,5 +1,6 @@
 package com.stars.scheduledsample.task;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 * @Date 14:05 2022/9/21
 **/
 @Component
+@ConditionalOnProperty(prefix = "scheduled", name = "enabled", havingValue = "true")
 public class PrintTask {
 
     @Scheduled(cron = "${scheduled.printCron}")

@@ -1,3 +1,4 @@
 scheduled:
-  printCron: "0 35 14 * * ?"
+  printCron: "0 12 17 * * ?"
+  enabled: false
 
