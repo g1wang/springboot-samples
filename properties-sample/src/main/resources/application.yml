@@ -2,3 +2,52 @@ info:
   title: "prop-sample"
   company: "stars"
 
+spring:
+  profiles:
+    active: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port:
+  8080
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  profiles:
+    include:
+      - proddb
+      - prodmq
+server:
+  port: 8082
+---
+
+spring:
+  config:
+    activate:
+      on-profile: proddb
+db:
+  name: mysql
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prodmq
+mq:
+  address: localhost
+
