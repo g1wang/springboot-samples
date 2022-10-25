@@ -12,8 +12,7 @@ spring:
     activate:
       on-profile: dev
 server:
-  port:
-  8080
+  port: 8080
 ---
 spring:
   config:
@@ -27,11 +26,8 @@ spring:
   config:
     activate:
       on-profile: prod
-
   profiles:
-    include:
-      - proddb
-      - prodmq
+    include: proddb,prodmq
 server:
   port: 8082
 ---
@@ -50,4 +46,3 @@ spring:
       on-profile: prodmq
 mq:
   address: localhost
-

@@ -1,6 +1,7 @@
 package com.stars.propertiessample.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "info")
+@PropertySource(value = {"config/db-config.properties"})
 public class InfoConfigProp {
     private String title;
     private String company;
