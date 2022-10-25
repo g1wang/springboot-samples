@@ -26,8 +26,8 @@ spring:
   config:
     activate:
       on-profile: prod
-  profiles:
-    include: proddb,prodmq
+#  profiles:
+#    include: proddb,prodmq
 server:
   port: 8082
 ---
