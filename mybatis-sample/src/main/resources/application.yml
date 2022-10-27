@@ -1,0 +1,8 @@
+mybatis:
+  type-aliases-package: com.neo.entity
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/recsys_schema?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
