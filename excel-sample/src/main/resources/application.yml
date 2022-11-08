@@ -1,0 +1,9 @@
+mybatis:
+  type-aliases-package: com.stars.excelsample.entity
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.86.90:3306/recsys?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+    username: devlop
+    password: qwer1234
+

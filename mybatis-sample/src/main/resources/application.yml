@@ -1,5 +1,5 @@
 mybatis:
-  type-aliases-package: com.neo.entity
+  type-aliases-package: com.stars.mybatissample.entity
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
