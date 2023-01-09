@@ -1,6 +1,7 @@
 package com.stars.springmvc.authorization.config;
 
 import com.stars.springmvc.authorization.interceptor.AuthorizationInterceptor;
+import com.stars.springmvc.authorization.resolvers.CurrentUserMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -22,8 +23,8 @@ public class MvcConfig implements WebMvcConfigurer {
     @Autowired
     private AuthorizationInterceptor authorizationInterceptor;
 
-    //@Autowired
-    //private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver;
+    @Autowired
+    private CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -32,6 +33,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        //argumentResolvers.add(currentUserMethodArgumentResolver);
+        argumentResolvers.add(currentUserMethodArgumentResolver);
     }
 }
