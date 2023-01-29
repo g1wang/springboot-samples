@@ -12,6 +12,11 @@ class RedisSampleApplicationTests {
     private StringRedisTemplate stringRedisTemplate;
     @Test
     void contextLoads() {
+
+    }
+
+    @Test
+    void push(){
         stringRedisTemplate.convertAndSend("string-topic","hello world");
     }
 
