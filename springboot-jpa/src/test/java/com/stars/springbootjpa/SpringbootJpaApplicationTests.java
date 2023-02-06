@@ -61,4 +61,12 @@ class SpringbootJpaApplicationTests {
         userEntityPage.get();
     }
 
+    @Test
+    void findUserByNamePageable(){
+        int page = 0,size = 1;
+        Pageable pageable = PageRequest.of(page, size, Sort.by("userId").descending());
+        Page<UserEntity> userEntityPage = userService.findUserByName("aab",pageable);
+        userEntityPage.get();
+    }
+
 }
