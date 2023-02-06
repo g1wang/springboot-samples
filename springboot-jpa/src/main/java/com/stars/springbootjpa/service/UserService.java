@@ -17,4 +17,7 @@ public interface UserService {
 
     Page<UserEntity> findALL(Pageable pageable);
     Page<UserEntity> findUserByName(String name,Pageable pageable);
+
+    int modifyByUserId(String  name, Integer userId);
+
 }

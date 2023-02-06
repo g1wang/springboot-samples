@@ -69,4 +69,9 @@ class SpringbootJpaApplicationTests {
         userEntityPage.get();
     }
 
+    @Test
+    void modifyByIdAndUserId(){
+        userService.modifyByUserId("aabb",4);
+    }
+
 }

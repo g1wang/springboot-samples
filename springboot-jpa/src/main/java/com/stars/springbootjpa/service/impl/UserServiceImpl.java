@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
     public Page<UserEntity> findUserByName(String name, Pageable pageable) {
         return userRepository.findUserByName(name,pageable);
     }
+
+    @Override
+    public int modifyByUserId(String name, Integer id) {
+        return userRepository.modifyByUserId(name,id);
+    }
 }
