@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>multi-datasource</artifactId>
+    <artifactId>multi-datasource-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>multi-datasource</name>
     <description>multi-datasource</description>
