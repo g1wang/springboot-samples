@@ -11,7 +11,7 @@
     <groupId>com.stars</groupId>
     <artifactId>spring-mvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-mvc</name>
+    <name>spring-mvc-filter</name>
     <description>spring-mvc</description>
     <properties>
         <java.version>1.8</java.version>
