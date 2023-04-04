@@ -1,4 +1,4 @@
-package com.stars.swaggersamples.comfig;
+package com.stars.swaggersamples.config;
 
 
 import org.springframework.context.annotation.Bean;
