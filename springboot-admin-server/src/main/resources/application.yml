@@ -1,0 +1,23 @@
+server:
+  port: 9901
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+  boot:
+    admin:
+      notify:
+        dingtalk:
+          enabled: true  # 启用钉钉通知
+          webhookUrl: https://oapi.dingtalk.com/robot/send?access_token=xxx  # 向钉钉群发送消息的地址
+          secret: xxx # 秘钥
+          message: '服务告警: #{instance.registration.name} #{instance.id} is #{event.statusInfo.status}' # 消息内容
+          ignoreChanges: ["*：*"] # 忽略从old到new的状态 这里是不忽略的意思

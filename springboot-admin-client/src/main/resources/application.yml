@@ -1,0 +1,25 @@
+server:
+  port: 8901
+
+spring:
+  application:
+    name: SBA-Client
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:9901
+        username: admin
+        password: 123456
+management:
+  #security:
+  #enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+  file:
+    path: ./log
