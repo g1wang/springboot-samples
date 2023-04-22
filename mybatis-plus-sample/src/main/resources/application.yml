@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    ds1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.86.90:3306/recsys?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+      username: devlop
+      password: qwer1234
+    ds2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.86.90:3306/recsys1?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+      username: devlop
+      password: qwer1234
+
+#配置枚举 支持通配符 * 或者 ; 分割。指定枚举类所在的包
+mybatis-plus:
+  type-enums-package: com.example.mybatisplussample.entity
