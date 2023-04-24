@@ -9,12 +9,6 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface UserServiceMapper1 extends BaseMapper<UserEntity1> {
-    @Select({
-            "select * from user_info"
-    })
-    @Results({
-            @Result(property = "userId", column = "user_id")
-    })
-    List<UserEntity1> getAll();
+public interface UserMapper1 extends BaseMapper<UserEntity1> {
+
 }
