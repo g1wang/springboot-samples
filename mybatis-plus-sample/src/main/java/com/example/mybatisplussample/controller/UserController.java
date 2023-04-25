@@ -1,15 +1,14 @@
 package com.example.mybatisplussample.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplussample.entity.UserEntity1;
 import com.example.mybatisplussample.entity.UserEntity2;
-import com.example.mybatisplussample.service.impl.UserServiceImpl1;
-import com.example.mybatisplussample.service.impl.UserServiceImpl2;
+import com.example.mybatisplussample.service.UserInfoService;
+import com.example.mybatisplussample.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @Description:
@@ -20,19 +19,21 @@ import java.util.List;
 @RequestMapping("mutilDataSource")
 public class UserController {
 
-    @Resource
-    UserServiceImpl1 userServiceImpl1;
+    @Autowired
+    UserService userService;
 
-    @Resource
-    UserServiceImpl2 userServiceImpl2;
+    @Autowired
+    UserInfoService userInfoService;
 
     @GetMapping("ds1")
-    public List<UserEntity1> getByIdDs1() {
-        return userServiceImpl1.getAll();
+    public Page<UserEntity1> getByIdDs1() {
+        Page<UserEntity1> page = new Page<>(0,10);
+        return userService.page(page);
     }
 
     @GetMapping("ds2")
-    public List<UserEntity2> getByIdDs2() {
-        return userServiceImpl2.getAll();
+    public Page<UserEntity2> getByIdDs2() {
+        Page<UserEntity2> page = new Page<>(1, 30);
+        return userInfoService.page(page);
     }
 }

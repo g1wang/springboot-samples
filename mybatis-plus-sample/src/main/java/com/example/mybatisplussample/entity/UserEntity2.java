@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @Date 2022/10/26 17:03
  */
 @Data
-@TableName(value = "user_info", schema = "recsys1")
+@TableName(value = "user_info")
 public class UserEntity2 {
     @OrderBy
     @TableId(type = IdType.AUTO)
