@@ -1,0 +1,3 @@
+# mybatis plus
+- mysql
+- TDengine

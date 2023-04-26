@@ -1,5 +1,6 @@
 package com.example.mybatisplussample.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplussample.entity.UserEntity1;
 import com.example.mybatisplussample.entity.UserEntity2;
@@ -28,12 +29,16 @@ public class UserController {
     @GetMapping("ds1")
     public Page<UserEntity1> getByIdDs1() {
         Page<UserEntity1> page = new Page<>(0,10);
-        return userService.page(page);
+        QueryWrapper<UserEntity1> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("sex",1).and(wq-> wq.ge("age",30).or().eq("score",4));
+        return userService.page(page,queryWrapper);
     }
 
     @GetMapping("ds2")
     public Page<UserEntity2> getByIdDs2() {
         Page<UserEntity2> page = new Page<>(1, 30);
-        return userInfoService.page(page);
+        QueryWrapper<UserEntity2> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("sex",1).and(wq-> wq.ge("age",30).or().eq("score",4));
+        return userInfoService.page(page,queryWrapper);
     }
 }
