@@ -1,9 +1,11 @@
 package com.example.mybatisplussample.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 /**
  * @Description:
@@ -14,11 +16,11 @@ import java.math.BigDecimal;
 @TableName(value = "user_info")
 public class UserEntity2 {
     @OrderBy
-    @TableId(type = IdType.AUTO)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
+    private Timestamp ts;
     private Integer userId;
-    @TableField("sex")
-    private SexEnum sexEnum;
-    private Integer age;
-    private BigDecimal score;
+    private Integer sex;
+    private String age;
+    private String score;
 }
 
