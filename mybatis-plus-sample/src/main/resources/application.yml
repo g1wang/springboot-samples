@@ -10,8 +10,8 @@ spring:
           password: qwer1234
         tdengine:
           url: jdbc:TAOS-RS://192.168.70.172:6041/homeplatform?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
-          username:
-          password:
+          username: ogawa_dev
+          password: ogawadev2023
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml

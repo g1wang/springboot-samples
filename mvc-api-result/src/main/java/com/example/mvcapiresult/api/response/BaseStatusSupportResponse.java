@@ -2,6 +2,9 @@ package com.example.mvcapiresult.api.response;
 
 import java.io.Serializable;
 
+/**
+ * @author wanggl
+ */
 public class BaseStatusSupportResponse<T> extends StatusSupportResponse implements Serializable {
     private static final long serialVersionUID = 2611556444074013268L;
     protected T data;

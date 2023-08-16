@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author wanggl
+ */
 @RestController
 @RequestMapping("/apiResult")
 public class ApiResultController {
@@ -33,7 +36,7 @@ public class ApiResultController {
     @ResultHandler
     @GetMapping("resultException")
     public R<?> getResultException() throws Exception {
-        System.out.printf(String.valueOf(1/0));
-        return R.success();
+        //System.out.printf(String.valueOf(1/0));
+        throw  new Exception("no no no");
     }
 }

@@ -7,6 +7,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author wanggl
+ */
 @Aspect
 @Component
 public class ResultAspect {
