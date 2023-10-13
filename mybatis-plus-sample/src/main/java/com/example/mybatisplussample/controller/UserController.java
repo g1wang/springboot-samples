@@ -57,7 +57,7 @@ public class UserController {
         System.out.println(new Date());
         for (int i = 1; i <= 100000000; i++) {
             UserEntity2 userEntity2 = new UserEntity2();
-            userEntity2.setTs(new Timestamp(new Date().getTime()));
+            userEntity2.setTs(new Timestamp(System.currentTimeMillis()));
             userEntity2.setUserId(2);
             userEntity2.setAge("2");
             userEntity2.setScore("2");
