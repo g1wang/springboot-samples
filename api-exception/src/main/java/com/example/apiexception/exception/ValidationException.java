@@ -1,8 +1,8 @@
 package com.example.apiexception.exception;
 
-import com.example.apiexception.exception.GlobalException;
-import com.example.apiexception.exception.GlobalExceptionEnum;
-
+/**
+ * 校验异常
+ */
 public class ValidationException extends GlobalException {
 
     public ValidationException(String msg) {

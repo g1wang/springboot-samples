@@ -5,15 +5,12 @@ import lombok.Getter;
 @Getter
 public enum GlobalExceptionEnum {
 
-    /**
-     * 系统异常
-     */
-    ERROR("-1", "系统异常,请稍后再试!"),
+    ERROR("E0001", "系统异常"),
     /**
      *参数校验异常
      */
-    PARAM_ERROR("1002", "参数校验异常"),
-    VALID_ERROR("2001",""),
+    PARAM_ERROR("E1002", "参数校验异常"),
+    VALID_ERROR("E2001",""),
     ;
 
     /**

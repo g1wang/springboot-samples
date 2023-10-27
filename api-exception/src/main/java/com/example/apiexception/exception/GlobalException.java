@@ -7,13 +7,6 @@ public class GlobalException extends RuntimeException{
     private String code;
     private String globalMessage;
 
-    public GlobalException() {
-    }
-
-    public GlobalException(String message) {
-        super(message);
-    }
-
     public GlobalException(String code, String message) {
         super(message);
         this.code = code;
