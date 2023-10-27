@@ -18,4 +18,14 @@ public class UserController {
     public UserDto getUser(String username){
         return userServiceImpl.getUser(username);
     }
+
+    @GetMapping("caffeine")
+    public UserDto getUser2(String username){
+        return userServiceImpl.getUser2(username);
+    }
+
+    @GetMapping("caffeine3")
+    public UserDto getUser3(String username){
+        return userServiceImpl.getUser3(username);
+    }
 }
