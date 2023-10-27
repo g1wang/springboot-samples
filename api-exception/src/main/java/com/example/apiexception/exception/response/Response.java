@@ -1,4 +1,4 @@
-package com.example.apiexception.api.response;
+package com.example.apiexception.exception.response;
 
 import java.io.Serializable;
 

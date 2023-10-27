@@ -1,13 +1,14 @@
-package com.example.apiexception.api.response;
+package com.example.apiexception.exception.response;
 
 /**
  * @author wanggl
  */
-public abstract class StatusSupportResponse implements Response{
+public abstract class StatusResponse<T> implements Response{
     protected String errCode = "0";
     protected String errMsg;
+    protected T data;
 
-    public StatusSupportResponse() {
+    public StatusResponse() {
     }
 
     public String getErrCode() {
@@ -24,5 +25,13 @@ public abstract class StatusSupportResponse implements Response{
 
     public void setErrMsg(String errMsg) {
         this.errMsg = errMsg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

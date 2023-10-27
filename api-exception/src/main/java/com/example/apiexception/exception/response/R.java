@@ -1,9 +1,9 @@
-package com.example.apiexception.api.response;
+package com.example.apiexception.exception.response;
 
 /**
  * @author wanggl
  */
-public class R<T> extends BaseStatusSupportResponse<T> {
+public class R<T> extends StatusResponse<T> {
     private static final long serialVersionUID =2611556444074013269L;
 
     public R() {

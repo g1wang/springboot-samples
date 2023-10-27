@@ -5,15 +5,15 @@ import lombok.Getter;
 @Getter
 public enum GlobalExceptionEnum {
 
+    /**
+     * 系统异常
+     */
     ERROR("-1", "系统异常,请稍后再试!"),
-
-    SUCCESS("0", "操作成功!"),
-
+    /**
+     *参数校验异常
+     */
     PARAM_ERROR("1002", "参数校验异常"),
-
-    DELETE_ERROR("1101", "删除错误"),
-
-    UPLOAD_ERROR("1102", "上传文件失败错误"),
+    VALID_ERROR("2001",""),
     ;
 
     /**
