@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: xx
+    password: xxxxxx
+    driver-class-name: xxx
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=CTT
+  cache:
+    type: redis
+  redis:
+    database: 0
+    port: 6379               # Redis???????
+    host: localhost          # Redis?????
+    password: xxxxxx         # Redis?????????????
+    timeout: 5000            # ????

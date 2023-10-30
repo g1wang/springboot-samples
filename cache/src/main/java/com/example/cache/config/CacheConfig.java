@@ -2,6 +2,9 @@ package com.example.cache.config;
 
 
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.spring.cache.RedissonCache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
@@ -74,4 +77,6 @@ public class CacheConfig {
         return cacheManager;
 
     }
+
+
 }
