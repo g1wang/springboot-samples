@@ -11,14 +11,6 @@ import java.io.Serializable;
  */
 @Data
 public class User implements Serializable {
-
-
-    public User(String email, String name, String passwd) {
-        this.email = email;
-        this.name = name;
-        this.passwd = passwd;
-    }
-
     private String email;
     private String name;
     private String passwd;

@@ -19,7 +19,10 @@ public class UserService {
         User user ;
         System.out.println("无缓存的时候调用");
         if ("aa@123.com".equals(email)){
-            user = new User("aa@123.com","aaa","aa123");
+            user = new User();
+            user.setEmail("aa@123.com");
+            user.setName("aaa");
+            user.setPasswd("aa123");
         }else throw new ValidationException("user not exist");
         return user;
     }
