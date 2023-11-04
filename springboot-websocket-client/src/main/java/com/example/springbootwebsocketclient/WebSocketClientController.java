@@ -1,13 +1,10 @@
 package com.example.springbootwebsocketclient;
 
-import com.example.springbootwebsocketclient.config.MyWebSocketClient;
 import org.java_websocket.client.WebSocketClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 
 /**
  * @Description: TODO

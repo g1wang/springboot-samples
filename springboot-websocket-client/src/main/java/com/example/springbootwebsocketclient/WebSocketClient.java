@@ -1,8 +1,6 @@
 package com.example.springbootwebsocketclient;
 
 import okhttp3.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
 
