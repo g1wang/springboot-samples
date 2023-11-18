@@ -84,6 +84,13 @@ public class CacheConfig {
 
     }
 
+    /**
+    * @Author wanggl
+    * @Description redis cache
+    * @Date 12:25 2023/11/18
+    * @Param [redisConnectionFactory]
+    * @return
+    **/
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisSerializer stringSerializer = new StringRedisSerializer();

@@ -8,7 +8,7 @@ spring:
     type: redis
   redis:
     database: 0
-    port: 6379               # Redis???????
-    host: localhost          # Redis?????
-    password: xxxxxx         # Redis?????????????
-    timeout: 5000            # ????
+    port: 6379
+    host: 192.168.70.174
+    password: ogawa@2018abc
+    timeout: 5000

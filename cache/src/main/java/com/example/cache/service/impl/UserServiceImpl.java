@@ -35,4 +35,13 @@ public class UserServiceImpl implements UserService {
         userDto.setUsername(username);
         return userDto;
     }
+
+    @Override
+    @Cacheable(cacheManager = "redis",value="userCache", key="#username")
+    public String getUserRedis(String username) {
+        log.info("do do query4 {}",username);
+        UserDto userDto = new UserDto();
+        userDto.setUsername(username);
+        return username;
+    }
 }

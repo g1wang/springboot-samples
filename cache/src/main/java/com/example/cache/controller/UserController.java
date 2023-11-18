@@ -28,4 +28,14 @@ public class UserController {
     public UserDto getUser3(String username){
         return userServiceImpl.getUser3(username);
     }
+
+    @GetMapping("redis-cache")
+    public String getUserRedis(String username){
+        return userServiceImpl.getUserRedis(username);
+    }
+
+    @GetMapping("redis-kv")
+    public String getUserRediskv(String username){
+        return userServiceImpl.getUserRedis(username);
+    }
 }

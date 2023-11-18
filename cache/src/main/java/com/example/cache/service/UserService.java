@@ -6,4 +6,5 @@ public interface UserService {
     UserDto getUser(String username);
     UserDto getUser2(String username);
     UserDto getUser3(String username);
+    String getUserRedis(String username);
 }
