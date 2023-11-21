@@ -10,5 +10,5 @@ spring:
     database: 0
     port: 6379
     host: 192.168.70.174
-    password: ogawa@2018abc
+    password:
     timeout: 5000

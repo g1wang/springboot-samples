@@ -19,8 +19,8 @@ public class RedisCacheController {
 
 
     @GetMapping("/getData/fromCache")
-    public Map<String,String> getData(){
-        return redisCacheService.getData();
+    public Map<String,String> getData(String key){
+        return redisCacheService.getData(key);
     }
 
     @GetMapping("/getData/invalid")
