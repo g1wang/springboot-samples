@@ -1,0 +1,16 @@
+server:
+  port: 8001
+
+mqtt:
+  url: 192.168.86.241:1883
+  username: muser
+  password: qwer1234
+  client-id: test-client
+  cleanSession: true
+  reconnect: true
+  timeout: 100
+  keepAlive: 100
+  qos: 0
+  down-topic: cmd/down/+
+  up-topic: cmd/up/
+

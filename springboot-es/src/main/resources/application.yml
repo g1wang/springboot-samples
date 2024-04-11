@@ -1,0 +1,7 @@
+spring:
+  # elasticsearch 配置
+  elasticsearch:
+    uris: http://192.168.86.241:9200
+    # 我没有设置账号密码,所以下面可以不配置
+    username: elastic
+    password: UBCY=oF+q*3UO5VVcZu5
