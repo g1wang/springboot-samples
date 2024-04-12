@@ -7,6 +7,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -15,6 +17,7 @@ import java.util.UUID;
  * @Author wanggl
  * @Date 2024/4/11 17:23
  */
+@Component
 public class MqttSendClient {
     @Autowired
     private MqttSendCallBack mqttSendCallBack;
@@ -22,8 +25,10 @@ public class MqttSendClient {
     @Autowired
     private MqttProperties mqttProperties;
 
+    MqttClient client = null;
+
+    @Bean
     public MqttClient connect() {
-        MqttClient client = null;
         try {
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
             client = new MqttClient(mqttProperties.getHostUrl(),uuid , new MemoryPersistence());
@@ -59,14 +64,10 @@ public class MqttSendClient {
         message.setQos(mqttProperties.getQos());
         message.setRetained(retained);
         message.setPayload(pushMessage.getBytes());
-        MqttClient mqttClient = connect();
         try {
-            mqttClient.publish(topic, message);
+            client.publish(topic, message);
         } catch (MqttException e) {
             e.printStackTrace();
-        } finally {
-            disconnect(mqttClient);
-            close(mqttClient);
         }
     }
 

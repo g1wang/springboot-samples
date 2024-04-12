@@ -2,9 +2,9 @@ server:
   port: 8001
 
 mqtt:
-  url: 192.168.86.241:1883
-  username: muser
-  password: qwer1234
+  hostUrl: tcp://192.168.86.241:1883
+  username: test
+  password: test
   client-id: test-client
   cleanSession: true
   reconnect: true
