@@ -1,6 +1,7 @@
 package com.example.springbootmqttclient.bean;
 
 import com.example.springbootmqttclient.config.MqttProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 
 /**
@@ -18,20 +20,21 @@ import java.util.UUID;
  * @Date 2024/4/11 17:23
  */
 @Component
-public class MqttSendClient {
-    @Autowired
-    private MqttSendCallBack mqttSendCallBack;
+@Slf4j
+public class MyMqttClient {
 
+    @Resource
+    MqttCallBack mqttCallBack;
     @Autowired
     private MqttProperties mqttProperties;
 
-    MqttClient client = null;
+    public static MqttClient mqttclient = null;
 
     @Bean
     public MqttClient connect() {
         try {
-            String uuid = UUID.randomUUID().toString().replaceAll("-","");
-            client = new MqttClient(mqttProperties.getHostUrl(),uuid , new MemoryPersistence());
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            mqttclient = new MqttClient(mqttProperties.getHostUrl(), uuid, new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
             options.setUserName(mqttProperties.getUsername());
             options.setPassword(mqttProperties.getPassword().toCharArray());
@@ -41,16 +44,17 @@ public class MqttSendClient {
             options.setAutomaticReconnect(mqttProperties.getReconnect());
             try {
                 // 设置回调
-                client.setCallback(mqttSendCallBack);
-                client.connect(options);
+                mqttclient.setCallback(mqttCallBack);
+                mqttclient.connect(options);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return client;
+        return mqttclient;
     }
+
 
     /**
      * 发布消息
@@ -59,13 +63,13 @@ public class MqttSendClient {
      * @param retained    是否保留
      * @param pushMessage 消息体
      */
-    public void publish(boolean retained, String topic, String pushMessage) {
+    public void publish(boolean retained, String topic, String pushMessage, Integer qos) {
         MqttMessage message = new MqttMessage();
-        message.setQos(mqttProperties.getQos());
+        message.setQos(qos);
         message.setRetained(retained);
         message.setPayload(pushMessage.getBytes());
         try {
-            client.publish(topic, message);
+            mqttclient.publish(topic, message);
         } catch (MqttException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,13 @@
 package com.example.springbootmqttclient.controller;
 
-import com.example.springbootmqttclient.bean.MqttSendClient;
+import com.example.springbootmqttclient.bean.MyMqttClient;
 import com.example.springbootmqttclient.domain.vo.MqttSendVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @Description: TODO
@@ -13,12 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/mqtt")
 public class MqttSendController {
-    @Autowired
-    MqttSendClient mqttSendClient;
+
+    @Resource
+    MyMqttClient myMqttClient;
 
     @PostMapping("send")
     public String send(@RequestBody MqttSendVo mqttSendVo){
-        mqttSendClient.publish(false, mqttSendVo.getTopic(), mqttSendVo.getMsg());
+        myMqttClient.publish(mqttSendVo.getRetained(),mqttSendVo.getTopic(), mqttSendVo.getMsg(),mqttSendVo.getQos());
         return  "OK";
 
     }

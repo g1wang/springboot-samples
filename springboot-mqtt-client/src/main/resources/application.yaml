@@ -11,6 +11,7 @@ mqtt:
   timeout: 100
   keepAlive: 100
   qos: 0
+  topic: sendtopic
   down-topic: cmd/down/+
   up-topic: cmd/up/
 

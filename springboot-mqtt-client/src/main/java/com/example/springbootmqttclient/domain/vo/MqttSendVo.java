@@ -11,4 +11,6 @@ import lombok.Data;
 public class MqttSendVo {
     private String topic;
     private String msg;
+    private Integer qos;
+    private Boolean retained;
 }
