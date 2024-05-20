@@ -1,13 +1,13 @@
-package com.example.logaspect;
+package com.example.logabckdesensitization;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sb231201LogAspectApplication {
+public class LogabckDesensitizationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Sb231201LogAspectApplication.class, args);
+        SpringApplication.run(LogabckDesensitizationApplication.class, args);
     }
 
 }

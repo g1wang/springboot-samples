@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="rollingFileAppender" class="com.example.logabckdesensitization.logbackadvice.SensitiveRollingFileAppender">
+        <file>./log/spring.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./log/spring.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>
+    <!-- ConsoleAppender 控制台输出日志 -->
+    <appender name="CONSOLE" class="com.example.logabckdesensitization.logbackadvice.SensitiveConsoleAppender">
+        <encoder>
+            <pattern>
+                ${CONSOLE_LOG_PATTERN}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 设置根日志级别为DEBUG，并将日志输出到控制台 -->
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+    <root level="INFO">
+        <appender-ref ref="rollingFileAppender" />
+    </root>
+
+</configuration>
