@@ -1,4 +1,29 @@
+server:
+  port: 8063
 scheduled:
   printCron: "0 12 17 * * ?"
   enabled: false
+
+#开发dev环境
+xxl:
+  job:
+    admin:
+      #xxlJob访问地址
+      addresses: http://192.168.72.136/xxl-job-admin
+    #xxlJob访问令牌(在xxlJob配置文件中自行设置的)
+    accessToken: default_token
+    executor:
+      #执行器名称
+      appname: ${JOB_EXECUTOR_APP_NAME:xxl-job-executor-demo}
+      # 执行器地址
+      address:
+      #xxlJob执行器地址
+      ip: ${JOB_EXECUTOR_IP:}
+      port: 9182
+      # 日志地址
+      logpath: ./app-log/xxl-job/jobhandler
+      # 日志保存时间
+      logretentiondays: 30
+
+
 
