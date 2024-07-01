@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @Date 2022/11/14 10:56
  */
 @Service
-@DS("tdengine")
+//@DS("tdengine")
 public class UserInfoService extends ServiceImpl<UserInfoMapper, UserEntity2>  {
 
 }

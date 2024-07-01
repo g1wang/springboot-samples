@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @Date 2022/10/26 17:03
  */
 @Data
-@TableName(value = "user_info")
+//@TableName(value = "user_info")
 public class UserEntity2 {
     @OrderBy
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "GMT+8")
