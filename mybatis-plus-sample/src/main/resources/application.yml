@@ -7,9 +7,9 @@ spring:
         mysql:
           type: com.alibaba.druid.pool.DruidDataSource
           driverClassName: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://47.118.23.183:3306/db_share_cushion?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
-          username: ogawa
-          password: ogawa@2020test
+          url: jdbc:mysql://127.0.0.1:3306/devdb?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+          username: devlop
+          password: qwer1234
           poolName: mysqlPool
           druid:
             initialSize: 5
@@ -29,7 +29,7 @@ spring:
         tdengine:
           url: jdbc:TAOS-RS://192.168.70.172:6041/homeplatform?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
           username: wwdev
-          password: ogawadev2023
+          password: dev2023
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
