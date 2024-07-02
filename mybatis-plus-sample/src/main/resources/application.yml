@@ -44,13 +44,13 @@ mybatis-plus:
     db-column-underline: true
     #刷新mapper 调试神器
     refresh-mapper: false
-    # 逻辑删除字段
-    logic-delete-value: 1
-    logic-not-delete-value: 0
     db-config:
       id-type: auto
       field-strategy: NOT_EMPTY
       db-type: MYSQL
+      logic-delete-field: deleted # 全局逻辑删除字段名
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
   configuration:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
