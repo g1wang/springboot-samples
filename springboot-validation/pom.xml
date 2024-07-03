@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.stars</groupId>
-    <artifactId>validation</artifactId>
+    <artifactId>springboot-validation</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>validation</name>
-    <description>validation</description>
+    <name>springboot-validation</name>
+    <description>springboot-validation</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
