@@ -1,0 +1,8 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 4703
+spring:
+  messages:
+    basename: i18n/messages
+
+
