@@ -23,7 +23,7 @@ public class SendController {
     public void  send(@RequestBody SendReq sendReq){
 
         for (int i = 0; i < sendReq.getBatchSize(); i++) {
-            kafkaTemplate.send("test-cur","msg"+i);
+            kafkaTemplate.send("test-cur","msg"+sendReq.getPrefix()+i);
         }
     }
     

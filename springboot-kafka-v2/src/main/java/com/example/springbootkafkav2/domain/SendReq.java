@@ -10,4 +10,5 @@ import lombok.Data;
 @Data
 public class SendReq {
     Integer batchSize;
+    String prefix;
 }
