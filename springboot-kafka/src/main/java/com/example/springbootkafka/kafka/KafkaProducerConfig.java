@@ -43,9 +43,9 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(SaslConfigs.SASL_MECHANISM,saslMechanism);
-        props.put("security.protocol",securityProtocol);
-        props.put(SaslConfigs.SASL_JAAS_CONFIG,saslJaasConfig);
+//        props.put(SaslConfigs.SASL_MECHANISM,saslMechanism);
+//        props.put("security.protocol",securityProtocol);
+//        props.put(SaslConfigs.SASL_JAAS_CONFIG,saslJaasConfig);
         return props;
     }
 

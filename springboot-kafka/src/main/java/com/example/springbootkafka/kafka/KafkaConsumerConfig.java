@@ -63,9 +63,9 @@ public class KafkaConsumerConfig {
         propsMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         propsMap.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         propsMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
-        propsMap.put(SaslConfigs.SASL_MECHANISM,saslMechanism);
-        propsMap.put("security.protocol",securityProtocol);
-        propsMap.put(SaslConfigs.SASL_JAAS_CONFIG,saslJaasConfig);
+//        propsMap.put(SaslConfigs.SASL_MECHANISM,saslMechanism);
+//        propsMap.put("security.protocol",securityProtocol);
+//        propsMap.put(SaslConfigs.SASL_JAAS_CONFIG,saslJaasConfig);
         return propsMap;
     }
 
