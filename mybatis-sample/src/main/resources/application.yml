@@ -1,8 +1,11 @@
 mybatis:
   type-aliases-package: com.stars.mybatissample.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/recsys_schema?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
+

@@ -42,6 +42,11 @@ public class UserController {
         return userEntity;
     }
 
+    @PostMapping("ds1a2")
+    public void   save1and2(){
+        userService.save1and2();
+    }
+
     @PutMapping("ds1")
     public UserEntity1 updateds1(@PathParam("id") Integer id){
         UserEntity1 userEntity = userService.getById(id);
