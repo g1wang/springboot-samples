@@ -1,9 +1,9 @@
 package com.example.auditlog.web;
 
 import com.example.auditlog.aspect.AuditLog;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.auditlog.vo.UserVo;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @Description:
@@ -15,7 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @GetMapping
     @AuditLog(operation = "getuser",operationType = "get",logType = "log",appType = "web")
-    public String getUser(Integer id) {
-        return "u" + id;
+    public String getUser(String name) {
+        return "u" + name;
+    }
+
+    @PostMapping
+    @AuditLog(operation = "postuser",operationType = "新增",logType = "log",appType = "web")
+    public UserVo postUser(@RequestBody UserVo userVo) {
+        userVo.setAge(11);
+        return userVo;
     }
 }
