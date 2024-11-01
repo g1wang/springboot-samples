@@ -1,7 +1,7 @@
-package com.stars.timeoutcenter.redissonzset;
+package com.stars.timeoutcenter.redissondelayqueue;
 
-import com.stars.timeoutcenter.redissonzset.handler.RedisDelayQueueHandler;
-import com.stars.timeoutcenter.redissonzset.util.RedisDelayQueueUtil;
+import com.stars.timeoutcenter.redissondelayqueue.handler.RedisDelayQueueHandler;
+import com.stars.timeoutcenter.redissondelayqueue.util.RedisDelayQueueUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

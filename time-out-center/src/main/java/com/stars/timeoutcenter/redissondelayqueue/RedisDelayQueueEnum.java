@@ -1,4 +1,4 @@
-package com.stars.timeoutcenter.redissonzset;
+package com.stars.timeoutcenter.redissondelayqueue;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

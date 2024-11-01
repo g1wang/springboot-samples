@@ -1,9 +1,10 @@
-package com.stars.timeoutcenter.redissonzset.web;
+package com.stars.timeoutcenter.redissondelayqueue.web;
 
-import com.stars.timeoutcenter.redissonzset.RedisDelayQueueEnum;
-import com.stars.timeoutcenter.redissonzset.util.RedisDelayQueueUtil;
+import com.stars.timeoutcenter.redissondelayqueue.RedisDelayQueueEnum;
+import com.stars.timeoutcenter.redissondelayqueue.util.RedisDelayQueueUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2024/10/29 18:41
  */
 @RestController
+@RequestMapping("redisson")
 public class RedisDelayQueueController {
     @Autowired
     private RedisDelayQueueUtil redisDelayQueueUtil;
