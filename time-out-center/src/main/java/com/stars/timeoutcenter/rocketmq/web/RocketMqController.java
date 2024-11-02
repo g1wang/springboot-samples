@@ -45,9 +45,9 @@ public class RocketMqController {
         //以下示例表示：延迟时间为10分钟之后的Unix时间戳。
         //定时/延时消息发送
         MessageBuilder messageBuilder = new MessageBuilderImpl();
-        ;
+
         //以下示例表示：延迟时间为10分钟之后的Unix时间戳。
-        Long deliverTimeStamp = System.currentTimeMillis() + delay * 60 * 60 * 1000;
+        Long deliverTimeStamp = System.currentTimeMillis() + delay  * 1000;
         Message message = messageBuilder.setTopic("ww_delay_topic")
                 //设置消息索引键，可根据关键字精确查找某条消息。
                 .setKeys("messageKey")

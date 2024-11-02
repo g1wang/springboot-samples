@@ -15,12 +15,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Author wanggl
  * @Date 2024/6/26 13:59
  */
-//@Component
+@Component
 @RocketMQMessageListener(topic = "ww_delay_topic", //topic主题
         consumerGroup = "consumer-group",          //消费组
         messageModel = MessageModel.CLUSTERING,
         consumeMode = ConsumeMode.CONCURRENTLY,
-        consumeThreadMax = 20)
+        consumeThreadMax = 8)
 @Slf4j
 public class DemoConsumer implements RocketMQListener<MessageExt> {
 
