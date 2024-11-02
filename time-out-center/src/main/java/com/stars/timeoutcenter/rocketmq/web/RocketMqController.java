@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RocketMqController {
 
     @GetMapping
-    public SendReceipt postMessage() throws ClientException {
+    public SendReceipt postMessage(Integer delay) throws ClientException {
         String endpoint = "127.0.0.1:8081";
         String namespace = "127.0.0.1:9876";
         // 消息发送的目标Topic名称，需要提前创建。
@@ -47,7 +47,7 @@ public class RocketMqController {
         MessageBuilder messageBuilder = new MessageBuilderImpl();
         ;
         //以下示例表示：延迟时间为10分钟之后的Unix时间戳。
-        Long deliverTimeStamp = System.currentTimeMillis() + 10 * 1000;
+        Long deliverTimeStamp = System.currentTimeMillis() + delay * 60 * 60 * 1000;
         Message message = messageBuilder.setTopic("ww_delay_topic")
                 //设置消息索引键，可根据关键字精确查找某条消息。
                 .setKeys("messageKey")

@@ -25,20 +25,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class NormalProduceController {
     @Resource
     private RocketMQTemplate rocketmqTemplate;
-    AtomicInteger atomicInteger = new AtomicInteger(0);
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    ExecutorService executorService = Executors.newFixedThreadPool(5);
+
     @GetMapping("/test")
     public String test(Integer size) {
         if (size == null) size = 20;
         //可以不用 setHeader 设置tag 标签
         List<Message> messageList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            executorService.submit(()->{
-                Message message = MessageBuilder.withPayload("Hello,RocketMQ," + atomicInteger.incrementAndGet()).build();
+            executorService.submit(() -> {
+                Message message = MessageBuilder.withPayload("Hello,RocketMQ,").build();
                 messageList.add(message);
-                SendResult sendResult = rocketmqTemplate.syncSend("ww_delay_topic", message,1000,4);
-                log.info("消息发送成功：{}",atomicInteger.incrementAndGet());
+                SendResult sendResult = rocketmqTemplate.syncSend("ww_delay_topic", message, 1000, 4);
+                log.info("消息发送成功：{}", atomicInteger.incrementAndGet());
             });
         }
         return "OK";

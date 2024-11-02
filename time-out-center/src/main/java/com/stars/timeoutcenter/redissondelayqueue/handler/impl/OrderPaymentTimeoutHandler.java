@@ -30,8 +30,14 @@ public class OrderPaymentTimeoutHandler implements RedisDelayQueueHandler<Map> {
     @Override
     public void execute(Map map) {
         try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            log.info("休眠异常");
+        }
+        try {
+
             atomicInteger.incrementAndGet();
-            throw new Exception("rer");
+            //throw new Exception("rer");
         } catch (Exception e) {
             Integer retry = Integer.valueOf((String) map.getOrDefault("retry", "0")) ;
             if (retry > 0) {
