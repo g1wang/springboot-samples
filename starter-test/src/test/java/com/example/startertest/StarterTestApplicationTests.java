@@ -2,6 +2,7 @@ package com.example.startertest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,6 +32,12 @@ class StarterTestApplicationTests {
 
 
 
+    }
+
+    @Test
+    void  test1(){
+        String ss= null;
+        Assert.notNull(ss, "用户不存在.");
     }
 
 }

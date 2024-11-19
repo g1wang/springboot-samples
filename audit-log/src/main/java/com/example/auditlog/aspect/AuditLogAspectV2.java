@@ -3,7 +3,9 @@ package com.example.auditlog.aspect;
 import cn.hutool.json.JSONUtil;
 import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -72,6 +74,16 @@ public class AuditLogAspectV2 {
         return rs;
     }
 
+    @AfterThrowing(pointcut = "auditLogPointCut()", throwing = "ex")
+    public void logException(JoinPoint joinPoint, Throwable ex) {
+        // 获取方法名和异常信息
+        String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+
+        log.info("Exception in " + className + "." + methodName + "(): " + ex.getMessage());
+
+        // 可以在此处记录日志、发送通知、做事务处理等
+    }
 
     private String getIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");

@@ -27,6 +27,11 @@ public class RedisDelayQueueController {
 
     ExecutorService executorService = Executors.newFixedThreadPool(10);
 
+    @GetMapping("exec")
+    public void getExec(){
+        throw new RuntimeException("wewwe");
+    }
+
     @GetMapping("/addQueue")
     public void addQueue(Integer total,Integer delay) {
         Map<String, String> map1 = new HashMap<>();

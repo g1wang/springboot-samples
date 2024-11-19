@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * @Author wanggl
  * @Date 2024/10/22 19:45
  */
-@Component
+//@Component
 @Aspect
 @Slf4j
 public class AuditLogAspect {
