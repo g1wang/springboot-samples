@@ -19,7 +19,7 @@ import java.util.HashMap;
  * @Author wanggl
  * @Date 2024/11/18 11:01
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class MyResponseAdvice implements ResponseBodyAdvice {
 
     // 返回一个 boolean 值，true 表示返回数据之前对数据进行重写，也就是会进入 beforeBodyWrite 方法

@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
  * @Author wanggl
  * @Date 2024/11/18 11:01
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class MyRequestAdvice implements RequestBodyAdvice {
 
     /**

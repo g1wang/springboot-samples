@@ -1,0 +1,75 @@
+# application.yml
+server:
+  port: 5008
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: batch-group
+      enable-auto-commit: false  # 关闭自动提交[3,5](@ref)
+      max-poll-records: 500      # 单次拉取最大消息数[3](@ref)
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      type: batch                # 启用批量监听[6](@ref)
+
+  batch:
+    jdbc:
+      initialize-schema: never
+    job:
+      enabled: true
+  datasource:
+    dynamic:
+      primary: mysql #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        mysql:
+          type: com.alibaba.druid.pool.DruidDataSource
+          driverClassName: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/devdb?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+          username: devlop
+          password: qwer1234
+          poolName: mysqlPool
+          druid:
+            initialSize: 5
+            minIdle: 5
+            maxActive: 50
+            # 配置获取连接等待超时的时间
+            maxWait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            timeBetweenEvictionRunsMillis: 60000
+            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            minEvictableIdleTimeMillis: 300000
+            validationQuery: SELECT 1 FROM dual
+            testWhileIdle: true
+            testOnBorrow: true
+            testOnReturn: false
+            filters: stat,wall,slf4j
+  #        tdengine:
+  #          url: jdbc:TAOS-RS://192.168.70.172:6041/homeplatform?timezone=UTC-8&charset=UTF-8&locale=en_US.UTF-8
+  #          username: wwdev
+  #          password: dev2023
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 1
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: false
+    db-config:
+      id-type: auto
+      field-strategy: NOT_EMPTY
+      db-type: MYSQL
+      logic-delete-field: deleted # 全局逻辑删除字段名
+      logic-delete-value: 1 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

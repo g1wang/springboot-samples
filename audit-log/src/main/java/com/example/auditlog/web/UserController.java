@@ -2,8 +2,7 @@ package com.example.auditlog.web;
 
 import com.example.auditlog.aspect.AuditLog;
 import com.example.auditlog.vo.UserVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("user")
+@Slf4j
 public class UserController {
     @GetMapping
     @AuditLog(operation = "getuser", operationType = "get", logType = "log", appType = "web")
     public Object getUser(String name) {
+        log.info("name:{}",name);
         return "U" + name;
     }
 
