@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stars.springbootsharding.mapper.UserInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.stars.springbootsharding.domain.UserInfo">
+            <id property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="sex" column="sex" jdbcType="INTEGER"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+            <result property="score" column="score" jdbcType="DECIMAL"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,sex,age,
+        score,deleted,create_time,
+        update_time,version
+    </sql>
+</mapper>
