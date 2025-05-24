@@ -1,6 +1,6 @@
-package com.stars.springbootdesensitization.controller;
+package com.stars.springbootdesensitization.apidesensitization.controller;
 
-import com.stars.springbootdesensitization.vo.TestPojo;
+import com.stars.springbootdesensitization.apidesensitization.vo.TestPojo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

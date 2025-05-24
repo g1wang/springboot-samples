@@ -1,7 +1,7 @@
-package com.stars.springbootdesensitization.vo;
+package com.stars.springbootdesensitization.apidesensitization.vo;
 
-import com.stars.springbootdesensitization.config.Desensitization;
-import com.stars.springbootdesensitization.config.DesensitizationTypeEnum;
+import com.stars.springbootdesensitization.apidesensitization.config.Desensitization;
+import com.stars.springbootdesensitization.apidesensitization.config.DesensitizationTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

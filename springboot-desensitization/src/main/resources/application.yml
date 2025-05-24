@@ -1,0 +1,94 @@
+server:
+  port: 8515
+
+logging:
+  level:
+    org.apache.shardingsphere: DEBUG
+
+spring:
+  shardingsphere:
+    datasource:
+      names: ds
+      ds:
+        #type: com.zaxxer.hikari.HikariDataSource
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/devdb?tinyInt1isBit=false&useUnicode=true&characterEncoding=UTF-8
+        username: devlop
+        password: qwer1234
+        druid:
+          initialSize: ${datasource_druid_initialSize:1}
+          minIdle: ${datasource_druid_minIdle:1}
+          maxActive: ${datasource_druid_maxActive:50}
+          # 配置获取连接等待超时的时间
+          maxWait: 60000
+          # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          timeBetweenEvictionRunsMillis: 60000
+          # 配置一个连接在池中最小生存的时间，单位是毫秒
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: SELECT 1 FROM dual
+          testWhileIdle: true
+          testOnBorrow: true
+          testOnReturn: false
+          filters: stat,wall
+    rules:
+      encrypt:
+        tables:
+          card_info:
+            columns:
+              finshell_card_no:
+                cipherColumn: finshell_card_no
+                encryptor-name: sm4_encryptor
+              id_no:
+                cipherColumn: id_no
+                encryptor-name: sm4_encryptor
+              name:
+                cipherColumn: name
+                encryptor-name: sm4_encryptor
+        encryptors:
+          aes_encryptor:
+            type: AES
+            props:
+              aes-key-value: hkiqAXU6Ur5fixGHaO4Lb2V2ggausYwW
+          aes_base_encryptor: # 加密后再使用base64存储
+            type: AES_BASE64
+            props:
+              aes-key-value: hkiqAXU6Ur5fixGHaO4Lb2V2ggausYwW
+          sm4_encryptor:
+            type: SM4 # 国密
+            props:
+              sm4-key: 2d8a1e0f9c7b3d5e1a8f0c6e4b2a7d9f
+              sm4-mode: ECB   # 或 CBC（必须指定）
+              sm4-padding: PKCS5Padding           # 填充方式（必须）
+    props:
+      sql-show: true
+
+
+  mybatis-plus:
+    mapper-locations: classpath*:mapper/*.xml
+    global-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+      id-type: 0
+      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+      field-strategy: 1
+      #驼峰下划线转换
+      db-column-underline: true
+      #刷新mapper 调试神器
+      refresh-mapper: false
+      db-config:
+        id-type: auto
+        field-strategy: NOT_EMPTY
+        db-type: MYSQL
+        logic-delete-field: deleted # 全局逻辑删除字段名
+        logic-delete-value: 1 # 逻辑已删除值
+        logic-not-delete-value: 0 # 逻辑未删除值
+    configuration:
+      map-underscore-to-camel-case: true
+      call-setters-on-nulls: true
+      cache-enabled: true
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

@@ -1,4 +1,4 @@
-package com.stars.springbootdesensitization.config;
+package com.stars.springbootdesensitization.apidesensitization.config;
 
 /**
  * @Description: TODO

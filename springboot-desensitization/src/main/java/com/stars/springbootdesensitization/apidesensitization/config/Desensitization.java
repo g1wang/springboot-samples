@@ -1,4 +1,4 @@
-package com.stars.springbootdesensitization.config;
+package com.stars.springbootdesensitization.apidesensitization.config;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
