@@ -20,4 +20,10 @@
         score,deleted,create_time,
         update_time,version
     </sql>
+    <select id="countUserInfo" resultType="java.lang.Integer">
+        select count(user_id) as cnt
+        from user_info
+        group by user_id
+        having cnt > 0
+    </select>
 </mapper>

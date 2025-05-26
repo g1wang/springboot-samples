@@ -3,6 +3,8 @@ package com.stars.springbootsharding.service;
 import com.stars.springbootsharding.domain.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author wanggl
 * @description 针对表【user_info】的数据库操作Service
@@ -10,4 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface UserInfoService extends IService<UserInfo> {
 
+    List<Integer> countUserInfo();
 }

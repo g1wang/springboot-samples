@@ -29,4 +29,9 @@ public class UserInfoController {
     public List<UserInfo> getUserInfo() {
         return userInfoService.list(new LambdaQueryWrapper<UserInfo>().orderByDesc(UserInfo::getUserId).last("limit 5"));
     }
+
+    @GetMapping("count")
+    public List<Integer> getUserInfoCount() {
+        return userInfoService.countUserInfo();
+    }
 }

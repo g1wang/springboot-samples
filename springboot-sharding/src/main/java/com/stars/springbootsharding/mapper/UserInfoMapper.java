@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.stars.springbootsharding.domain.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * @author wanggl
 * @description 针对表【user_info】的数据库操作Mapper
@@ -13,6 +15,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
+    List<Integer> countUserInfo();
 }
 
 
