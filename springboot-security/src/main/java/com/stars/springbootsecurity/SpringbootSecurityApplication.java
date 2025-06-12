@@ -1,13 +1,13 @@
-package com.stars.sb231204jwt;
+package com.stars.springbootsecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sb231204JwtApplication {
+public class SpringbootSecurityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Sb231204JwtApplication.class, args);
+        SpringApplication.run(SpringbootSecurityApplication.class, args);
     }
 
 }
