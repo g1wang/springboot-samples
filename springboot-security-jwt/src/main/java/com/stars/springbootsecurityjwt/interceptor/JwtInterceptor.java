@@ -3,6 +3,7 @@ package com.stars.springbootsecurityjwt.interceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stars.springbootsecurityjwt.config.KeyManager;
 import com.stars.springbootsecurityjwt.util.JwtUtils;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ import java.util.Map;
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    JwtUtils jwtUtils;
+    @Resource
+    private JwtUtils jwtUtils;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

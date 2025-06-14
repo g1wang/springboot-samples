@@ -58,7 +58,7 @@ class SpringbootSecurityJwtApplicationTests {
         SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         String token = jwtUtils.generateToken("alice", "ROLE_USER,ROLE_VIEWER", secretKey);
         System.out.println("Generated JWT: " + token);
-        System.out.println(jwtUtils.validateToken(token, secretKey));
+        jwtUtils.validateToken(token, secretKey);
     }
 
 }

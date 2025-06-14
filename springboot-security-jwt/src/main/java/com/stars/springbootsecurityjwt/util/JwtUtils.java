@@ -24,48 +24,47 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class JwtUtils {
 
-    private  final String ACCESS_TOKEN = "access_token";
-    private  final String REFRESH_TOKEN = "refresh_token";
+    private final String ACCESS_TOKEN = "access_token";
+    private final String REFRESH_TOKEN = "refresh_token";
     @Resource
-    private  JwtProperties jwtProperties;
+    private JwtProperties jwtProperties;
     @Resource
-    private  RedissonClient redissonClient;
+    private RedissonClient redissonClient;
 
     /**
-    * @Author wanggl
-    * @Description 非对称加密 RSA
-    * @Date 16:44 2025/6/12
-    * @Param [token, publicKey]
-    * @return
-    **/
-    public  boolean validateToken(String token, PublicKey publicKey) {
+     * @return
+     * @Author wanggl
+     * @Description 非对称加密 RSA
+     * @Date 16:44 2025/6/12
+     * @Param [token, publicKey]
+     **/
+    public void validateToken(String token, PublicKey publicKey) {
         JwtParser parser = getParser(publicKey);
-        return validateToken(token, parser);
+        validateToken(token, parser);
     }
 
     /**
-    * @Author wanggl
-    * @Description 对称加密HS
-    * @Date 16:44 2025/6/12
-    * @Param [token, secretKey]
-    * @return
-    **/
-    public  boolean validateToken(String token, SecretKey secretKey) {
+     * @return
+     * @Author wanggl
+     * @Description 对称加密HS
+     * @Date 16:44 2025/6/12
+     * @Param [token, secretKey]
+     **/
+    public void validateToken(String token, SecretKey secretKey) {
         JwtParser parser = getParser(secretKey);
-        return validateToken(token, parser);
+        validateToken(token, parser);
     }
 
-    private  boolean validateToken(String token, JwtParser jwtParser) {
+    private void validateToken(String token, JwtParser jwtParser) {
         String userId = getUserIdFromToken(token, jwtParser);
         // 从redis缓存获取token
         String jwt = (String) redissonClient.getMapCache(jwtProperties.getJwtCacheKey() + userId).get(ACCESS_TOKEN);
         if (jwt == null || !jwt.equals(token)) {
             throw new RuntimeException("token no found");
         }
-        return true;
     }
 
-    public  String generateToken(String userId, String roles, Key secretKey) {
+    public String generateToken(String userId, String roles, Key secretKey) {
         long nowMillis = System.currentTimeMillis();
         // 创建私有声明
         Map<String, Object> claims = new HashMap<>();
@@ -79,7 +78,7 @@ public class JwtUtils {
                 .claims(claims) // 添加自定义的私有声明
                 .signWith(secretKey)  // 使用密钥进行签名
                 .compact(); // 构建并序列化为紧凑的字符串格式
-        redissonClient.getMapCache(jwtProperties.getJwtCacheKey()+userId).put(ACCESS_TOKEN, jwt, jwtProperties.getExpiration(), TimeUnit.SECONDS);
+        redissonClient.getMapCache(jwtProperties.getJwtCacheKey() + userId).put(ACCESS_TOKEN, jwt, jwtProperties.getExpiration(), TimeUnit.SECONDS);
         //redissonClient.getMapCache(jwtProperties.getJwtCacheKey()+userId).put(REFRESH_TOKEN, jwt, jwtProperties.getExpiration() * 2, TimeUnit.SECONDS);
         return jwt;
     }
@@ -91,7 +90,7 @@ public class JwtUtils {
      * @Date 14:07 2025/6/12
      * @Param []
      **/
-    public  String getUserIdFromToken(String token, JwtParser jwtParser) {
+    public String getUserIdFromToken(String token, JwtParser jwtParser) {
         String userId = null;
         Claims claims = getClaimsFromToken(token, jwtParser);
         if (claims != null) {
@@ -107,7 +106,7 @@ public class JwtUtils {
      * @Date 16:07 2025/6/12
      * @Param [token, publicKey]
      **/
-    private  JwtParser getParser(PublicKey publicKey) {
+    private JwtParser getParser(PublicKey publicKey) {
         return Jwts.parser()
                 .verifyWith(publicKey)   // 必须设置签名密钥
                 .requireIssuer(jwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
@@ -121,7 +120,7 @@ public class JwtUtils {
      * @Date 16:07 2025/6/12
      * @Param [token, publicKey]
      **/
-    private  JwtParser getParser(SecretKey secretKey) {
+    private JwtParser getParser(SecretKey secretKey) {
         return Jwts.parser()
                 .verifyWith(secretKey)   // 必须设置签名密钥
                 .requireIssuer(jwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
@@ -135,7 +134,7 @@ public class JwtUtils {
      * @param jwtParser
      * @return 数据声明
      */
-    private  Claims getClaimsFromToken(String token, JwtParser jwtParser) {
+    private Claims getClaimsFromToken(String token, JwtParser jwtParser) {
         Claims claims = null;
         try {
             // 解析 Token。如果任何校验失败，这里会直接抛出异常。
