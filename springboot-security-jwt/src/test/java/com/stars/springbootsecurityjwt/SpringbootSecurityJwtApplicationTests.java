@@ -1,5 +1,6 @@
 package com.stars.springbootsecurityjwt;
 
+import com.stars.springbootsecurityjwt.config.KeyManager;
 import com.stars.springbootsecurityjwt.util.JwtUtils;
 import com.stars.springbootsecurityjwt.util.KeyLoader;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,18 +31,18 @@ class SpringbootSecurityJwtApplicationTests {
             // === 1. 从文件中加载密钥对 ===
             // =================================================================
             // 请将 "path/to/your/private_key.pem" 和 "path/to/your/public_key.pem" 替换为你的实际文件路径
-            String privateKeyPath = "D:\\IdeaProjects\\springboot-samples\\springboot-security-jwt\\src\\main\\resources\\private_key.pem";
+            /*String privateKeyPath = "D:\\IdeaProjects\\springboot-samples\\springboot-security-jwt\\src\\main\\resources\\private_key.pem";
             String publicKeyPath = "D:\\IdeaProjects\\springboot-samples\\springboot-security-jwt\\src\\main\\resources\\public_key.pem";
 
             PrivateKey privateKey = KeyLoader.loadRsaPrivateKey(privateKeyPath);
-            PublicKey publicKey = KeyLoader.loadRsaPublicKey(publicKeyPath);
+            PublicKey publicKey = KeyLoader.loadRsaPublicKey(publicKeyPath);*/
 
             // =================================================================
             // === 2. 使用加载的私钥生成 JWT ===
             // =================================================================
-            String jwtToken = jwtUtils.generateToken("qwer", "123", privateKey);
+            String jwtToken = jwtUtils.generateToken("qwer", "123", KeyManager.getPrivateKey());
             System.out.println("\n--- Generating Token with Private Key from file ---" + jwtToken);
-            jwtUtils.validateToken(jwtToken, publicKey);
+            jwtUtils.validateToken(jwtToken, KeyManager.getPublicKey());
         } catch (Exception e) {
             // 捕获所有可能的异常：文件未找到、密钥格式错误、JWT校验失败等
             System.err.println("An error occurred: " + e.getMessage());
