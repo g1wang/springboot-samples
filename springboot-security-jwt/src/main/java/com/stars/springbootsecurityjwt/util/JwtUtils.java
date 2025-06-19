@@ -45,21 +45,16 @@ public class JwtUtils {
         return getClaimsFromToken(token, parser);
     }
 
-    public static String generateToken(String userId, String roles, Key secretKey) {
-        long nowMillis = System.currentTimeMillis();
-        // 创建私有声明
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("roles", roles);
-        // 使用 JJWT 的 Builder 模式创建 Token
-        String jwt = Jwts.builder()
-                .subject(userId) // 设置主题，通常是用户名或用户ID
-                .issuer(JwtProperties.getIssuer()) // 设置签发者
-                .issuedAt(new Date(nowMillis)) // 设置签发时间
-                .expiration(new Date(nowMillis + JwtProperties.getExpiration()))
-                .claims(claims) // 添加自定义的私有声明
-                .signWith(secretKey)  // 使用密钥进行签名
-                .compact(); // 构建并序列化为紧凑的字符串格式
-        return jwt;
+    /**
+     * @return
+     * @Author wanggl
+     * @Description 从令牌中获取userid
+     * @Date 14:07 2025/6/12
+     * @Param []
+     **/
+    public static String getSubject(String token, PublicKey publicKey) {
+        JwtParser parser = getParser(publicKey);
+        return getSubject(token, parser);
     }
 
     /**
@@ -69,14 +64,45 @@ public class JwtUtils {
      * @Date 14:07 2025/6/12
      * @Param []
      **/
-    private static String getUserIdFromToken(String token, JwtParser jwtParser) {
-        String userId = null;
+    public static String getSubject(String token, SecretKey secretKey) {
+        JwtParser parser = getParser(secretKey);
+        return getSubject(token, parser);
+    }
+
+    /**
+     * @return
+     * @Author wanggl
+     * @Description 从令牌中获取userid
+     * @Date 14:07 2025/6/12
+     * @Param []
+     **/
+    private static String getSubject(String token, JwtParser jwtParser) {
+        String subject = null;
         Claims claims = getClaimsFromToken(token, jwtParser);
         if (claims != null) {
-            userId = claims.getSubject();
+            subject = claims.getSubject();
         }
-        return userId;
+        return subject;
     }
+
+    public static String generateToken(String subject, String roles, Key secretKey) {
+        long nowMillis = System.currentTimeMillis();
+        // 创建私有声明
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", roles);
+        // 使用 JJWT 的 Builder 模式创建 Token
+        String jwt = Jwts.builder()
+                .subject(subject) // 设置主题，通常是用户名或用户ID
+                .issuer(JwtProperties.getIssuer()) // 设置签发者
+                .issuedAt(new Date(nowMillis)) // 设置签发时间
+                .expiration(new Date(nowMillis + JwtProperties.getExpiration()))
+                .claims(claims) // 添加自定义的私有声明
+                .signWith(secretKey)  // 使用密钥进行签名
+                .compact(); // 构建并序列化为紧凑的字符串格式
+        return jwt;
+    }
+
+
 
     /**
      * @return
