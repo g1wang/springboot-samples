@@ -1,5 +1,6 @@
-package com.stars.springbootsecurityjwt.config;
+package com.stars.springbootsecurityauth.util;
 
+import com.stars.springbootsecurityjwt.config.JwtProperties;
 import com.stars.springbootsecurityjwt.util.KeyLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

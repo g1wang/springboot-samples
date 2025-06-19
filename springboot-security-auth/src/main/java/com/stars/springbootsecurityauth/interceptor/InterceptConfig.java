@@ -1,4 +1,4 @@
-package com.stars.springbootsecurityjwt.interceptor;
+package com.stars.springbootsecurityauth.interceptor;
 
 import com.stars.springbootsecurityjwt.config.JwtProperties;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,10 @@
-package com.stars.springbootsecurityjwt.interceptor;
+package com.stars.springbootsecurityauth.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stars.springbootsecurityjwt.config.KeyManager;
 import com.stars.springbootsecurityjwt.util.JwtUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -34,7 +32,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         } else {
             try {
                 //如果验证成功放行请求
-                jwtUtils.validateToken(token, KeyManager.getPublicKey());
+                jwtUtils.getClaims(token, KeyManager.getPublicKey());
                 return true;
             } catch (Exception exception) {
                 map.put("msg", "验证失败：" + exception);
