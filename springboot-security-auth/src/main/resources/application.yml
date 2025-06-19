@@ -1,1 +1,25 @@
-spring.application.name=springboot-security-auth
+server:
+  port: 8012
+
+jwt:
+  expiration: 3600000 # JWT 令牌的有效期，用于校验JWT令牌的合法性，一个小时
+  issuer: MyAuthServer
+  header: Authorization # HTTP 请求的 Header 名称，该 Header作为参数传递 JWT 令牌
+  privateKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-jwt\src\main\resources\private_key.pem
+  publicKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-jwt\src\main\resources\public_key.pem
+  jwtCacheKey: "jwt:userId:"
+  whiteList:
+    - /user/login
+    #- /test/login
+
+
+spring:
+  redis:
+    redisson:
+      config: |
+        singleServerConfig:
+          address: "redis://127.0.0.1:6379"
+          # password: "your_password"   # 可选
+          database: 0
+        threads: 4
+        nettyThreads: 4
