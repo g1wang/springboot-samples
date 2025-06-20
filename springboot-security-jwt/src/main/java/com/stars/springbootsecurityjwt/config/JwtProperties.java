@@ -10,41 +10,24 @@ public class JwtProperties {
     /**
      * accessToken 有效时间
      */
-    private static Long expiration;
-    /**
-     * 前端向后端传递JWT时使用HTTP的header名称，前后端要统一
-     */
-    private static String header;
-    private static String privateKeyPath;
-    private static String publicKeyPath;
-    private static String issuer;
+    private Long expiration;
+    private String issuer;
 
-    public JwtProperties(Long expiration, String header, String privateKeyPath, String publicKeyPath, String issuer, String jwtCacheKey) {
-        this.expiration = expiration;
-        this.header = header;
-        this.privateKeyPath = privateKeyPath;
-        this.publicKeyPath = publicKeyPath;
-        this.issuer = issuer;
-    }
 
-    public static Long getExpiration() {
+    public Long getExpiration() {
         return expiration;
     }
 
-    public static String getHeader() {
-        return header;
+    public void setExpiration(Long expiration) {
+        this.expiration = expiration;
     }
 
-    public static String getPrivateKeyPath() {
-        return privateKeyPath;
-    }
-
-    public static String getPublicKeyPath() {
-        return publicKeyPath;
-    }
-
-    public static String getIssuer() {
+    public String getIssuer() {
         return issuer;
+    }
+
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 }
 

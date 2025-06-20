@@ -21,6 +21,12 @@ import java.util.Map;
 public class JwtUtils {
 
 
+    private final JwtProperties jwtProperties;
+
+    public JwtUtils(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
+
     /**
      * @return
      * @Author wanggl
@@ -28,7 +34,7 @@ public class JwtUtils {
      * @Date 16:44 2025/6/12
      * @Param [token, publicKey]
      **/
-    public static Map<String, Object> getClaims(String token, PublicKey publicKey) {
+    public Map<String, Object> getClaims(String token, PublicKey publicKey) {
         JwtParser parser = getParser(publicKey);
         return getClaimsFromToken(token, parser);
     }
@@ -40,7 +46,7 @@ public class JwtUtils {
      * @Date 16:44 2025/6/12
      * @Param [token, secretKey]
      **/
-    public static Map<String, Object> getClaims(String token, SecretKey secretKey) {
+    public Map<String, Object> getClaims(String token, SecretKey secretKey) {
         JwtParser parser = getParser(secretKey);
         return getClaimsFromToken(token, parser);
     }
@@ -52,7 +58,7 @@ public class JwtUtils {
      * @Date 14:07 2025/6/12
      * @Param []
      **/
-    public static String getSubject(String token, PublicKey publicKey) {
+    public String getSubject(String token, PublicKey publicKey) {
         JwtParser parser = getParser(publicKey);
         return getSubject(token, parser);
     }
@@ -64,7 +70,7 @@ public class JwtUtils {
      * @Date 14:07 2025/6/12
      * @Param []
      **/
-    public static String getSubject(String token, SecretKey secretKey) {
+    public String getSubject(String token, SecretKey secretKey) {
         JwtParser parser = getParser(secretKey);
         return getSubject(token, parser);
     }
@@ -76,7 +82,7 @@ public class JwtUtils {
      * @Date 14:07 2025/6/12
      * @Param []
      **/
-    private static String getSubject(String token, JwtParser jwtParser) {
+    private String getSubject(String token, JwtParser jwtParser) {
         String subject = null;
         Claims claims = getClaimsFromToken(token, jwtParser);
         if (claims != null) {
@@ -85,7 +91,7 @@ public class JwtUtils {
         return subject;
     }
 
-    public static String generateToken(String subject, String roles, Key secretKey) {
+    public String generateToken(String subject, String roles, Key secretKey) {
         long nowMillis = System.currentTimeMillis();
         // 创建私有声明
         Map<String, Object> claims = new HashMap<>();
@@ -93,15 +99,14 @@ public class JwtUtils {
         // 使用 JJWT 的 Builder 模式创建 Token
         String jwt = Jwts.builder()
                 .subject(subject) // 设置主题，通常是用户名或用户ID
-                .issuer(JwtProperties.getIssuer()) // 设置签发者
+                .issuer(jwtProperties.getIssuer()) // 设置签发者
                 .issuedAt(new Date(nowMillis)) // 设置签发时间
-                .expiration(new Date(nowMillis + JwtProperties.getExpiration()))
+                .expiration(new Date(nowMillis + jwtProperties.getExpiration()))
                 .claims(claims) // 添加自定义的私有声明
                 .signWith(secretKey)  // 使用密钥进行签名
                 .compact(); // 构建并序列化为紧凑的字符串格式
         return jwt;
     }
-
 
 
     /**
@@ -111,10 +116,10 @@ public class JwtUtils {
      * @Date 16:07 2025/6/12
      * @Param [token, publicKey]
      **/
-    private static JwtParser getParser(PublicKey publicKey) {
+    private JwtParser getParser(PublicKey publicKey) {
         return Jwts.parser()
                 .verifyWith(publicKey)   // 必须设置签名密钥
-                .requireIssuer(JwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
+                .requireIssuer(jwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
                 .build();
     }
 
@@ -125,10 +130,10 @@ public class JwtUtils {
      * @Date 16:07 2025/6/12
      * @Param [token, publicKey]
      **/
-    private static JwtParser getParser(SecretKey secretKey) {
+    private JwtParser getParser(SecretKey secretKey) {
         return Jwts.parser()
                 .verifyWith(secretKey)   // 必须设置签名密钥
-                .requireIssuer(JwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
+                .requireIssuer(jwtProperties.getIssuer())  // (可选) 要求签发者必须是 "MyAuthServer"
                 .build();
     }
 
@@ -139,7 +144,7 @@ public class JwtUtils {
      * @param jwtParser
      * @return 数据声明
      */
-    private static Claims getClaimsFromToken(String token, JwtParser jwtParser) {
+    private Claims getClaimsFromToken(String token, JwtParser jwtParser) {
         // 解析 Token。如果任何校验失败，这里会直接抛出异常。
         Jws<Claims> claimsJws = jwtParser.parseSignedClaims(token);
         // 如果成功解析，可以安全地获取声明
