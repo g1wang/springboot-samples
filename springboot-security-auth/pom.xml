@@ -48,7 +48,7 @@
         <!--引入 jwt-->
         <dependency>
             <groupId>com.stars</groupId>
-            <artifactId>springboot-security-jwt</artifactId>
+            <artifactId>security-jwt-spring-boot-stater</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

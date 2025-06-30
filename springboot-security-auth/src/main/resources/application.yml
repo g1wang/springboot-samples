@@ -1,16 +1,23 @@
 server:
   port: 8012
 
-jwt:
-  expiration: 3600000 # JWT 令牌的有效期，用于校验JWT令牌的合法性，一个小时
-  issuer: MyAuthServer
-  header: Authorization # HTTP 请求的 Header 名称，该 Header作为参数传递 JWT 令牌
-  privateKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-jwt\src\main\resources\private_key.pem
-  publicKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-jwt\src\main\resources\public_key.pem
-  jwtCacheKey: "jwt:userId:"
+auth:
+  enabled: true
+  header: Authorization # HTTP 请求的 Header 名称，该 Header作为参数传递令牌
+  cacheKey: "jwt:userId:"
   whiteList:
     - /user/login
     #- /test/login
+
+com:
+  stars:
+    jwt:
+      expiration: 3600000 # JWT 令牌的有效期，用于校验JWT令牌的合法性，一个小时
+      issuer: MyAuthServer
+      privateKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-auth\src\main\resources\private_key.pem
+      publicKeyPath: D:\IdeaProjects\springboot-samples\springboot-security-auth\src\main\resources\public_key.pem
+
+
 
 
 spring:

@@ -1,16 +1,20 @@
 package com.stars.springbootsecurityauth;
 
-import com.stars.springbootsecurityauth.util.KeyManager;
-import com.stars.springbootsecurityjwt.util.JwtUtils;
+import com.stars.securityjwtspringbootstater.configration.util.JwtRSAUtils;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.crypto.SecretKey;
 
 @SpringBootTest
 class SpringbootSecurityAuthApplicationTests {
+
+
+    @Autowired
+    JwtRSAUtils jwtRSAUtils;
 
     @Test
     void contextLoads() {
@@ -36,9 +40,10 @@ class SpringbootSecurityAuthApplicationTests {
             // =================================================================
             // === 2. 使用加载的私钥生成 JWT ===
             // =================================================================
-            String jwtToken = JwtUtils.generateToken("qwer", "123", KeyManager.getPrivateKey());
+            String jwtToken = jwtRSAUtils.generateToken("qwer", "123");
             System.out.println("\n--- Generating Token with Private Key from file ---" + jwtToken);
-            JwtUtils.getClaims(jwtToken, KeyManager.getPublicKey());
+            jwtRSAUtils.getClaims(jwtToken);
+            System.out.println(jwtRSAUtils.getSubject(jwtToken));
         } catch (Exception e) {
             // 捕获所有可能的异常：文件未找到、密钥格式错误、JWT校验失败等
             System.err.println("An error occurred: " + e.getMessage());
@@ -52,9 +57,9 @@ class SpringbootSecurityAuthApplicationTests {
         // 1. 生成一个安全的密钥 (在实际应用中，这个密钥应该来自配置文件或密钥库，且不能硬编码)
         // Keys.secretKeyFor() 会为指定的算法生成一个足够强度的安全密钥。
         SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-        String token = JwtUtils.generateToken("alice", "ROLE_USER,ROLE_VIEWER", secretKey);
+        String token = jwtRSAUtils.generateToken("alice", "ROLE_USER,ROLE_VIEWER");
         System.out.println("Generated JWT: " + token);
-        JwtUtils.getClaims(token, secretKey);
+        jwtRSAUtils.getClaims(token);
     }
 
 

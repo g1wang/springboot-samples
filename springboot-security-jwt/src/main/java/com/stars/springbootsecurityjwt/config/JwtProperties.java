@@ -5,7 +5,6 @@ package com.stars.springbootsecurityjwt.config;
  * @Author wanggl
  * @Date 2025/6/11 10:18
  */
-
 public class JwtProperties {
     /**
      * accessToken 有效时间
